@@ -3309,6 +3309,7 @@ _clEnqueueReleaseGLObjects_(cl_command_queue       command_queue,
   return err;
 }
 
+#ifndef __APPLE__
 CL_API_ENTRY cl_int CL_API_CALL
 _clGetGLContextInfoKHR_(const cl_context_properties *  properties,
                         cl_gl_context_info             param_name,
@@ -3330,6 +3331,7 @@ _clGetGLContextInfoKHR_(const cl_context_properties *  properties,
   }
   return err;
 }
+#endif
 
 CL_API_ENTRY cl_event CL_API_CALL
 _clCreateEventFromGLsyncKHR_(cl_context            context ,
@@ -3451,8 +3453,10 @@ KHRicdVendorDispatch* createDispatchTable()
   DISPATCH_TABLE_ENTRY(clEnqueueAcquireGLObjects);
   DISPATCH_TABLE_ENTRY(clEnqueueReleaseGLObjects);
 
+#ifndef __APPLE__
   // cl_khr_gl_sharing
   DISPATCH_TABLE_ENTRY(clGetGLContextInfoKHR);
+#endif
 
   // cl_khr_d3d10_sharing (windows-only)
 #if defined(_WIN32)

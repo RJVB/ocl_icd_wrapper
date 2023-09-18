@@ -56,6 +56,13 @@
 #include <OpenCL/cl_gl.h>
 #include <OpenCL/cl_gl_ext.h>
 #include <OpenCL/cl_ext.h>
+
+typedef cl_uint                     cl_gl_context_info;
+typedef cl_ulong                    cl_device_partition_property_ext;
+#ifndef CL_PLATFORM_ICD_SUFFIX_KHR
+#define CL_PLATFORM_ICD_SUFFIX_KHR  0x0920
+#endif
+
 #else
 #include <CL/cl.h>
 #include <GL/gl.h>
