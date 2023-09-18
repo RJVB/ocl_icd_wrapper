@@ -636,14 +636,14 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueBarrierWithWaitList)(
 
 typedef CL_API_ENTRY void * (CL_API_CALL *KHRpfn_clGetExtensionFunctionAddressForPlatform)(
     cl_platform_id platform,
-    const char *   function_name) CL_API_SUFFIX__VERSION_1_2;
+    const char *   function_name);
 
 // Deprecated APIs
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clSetCommandQueueProperty)(
     cl_command_queue              command_queue,
     cl_command_queue_properties   properties,
     cl_bool                       enable,
-    cl_command_queue_properties * old_properties) CL_EXT_SUFFIX__VERSION_1_0_DEPRECATED;
+    cl_command_queue_properties * old_properties); // CL_EXT_SUFFIX__VERSION_1_0_DEPRECATED;
 
 typedef CL_API_ENTRY cl_mem (CL_API_CALL *KHRpfn_clCreateImage2D)(
     cl_context              context,
@@ -653,7 +653,7 @@ typedef CL_API_ENTRY cl_mem (CL_API_CALL *KHRpfn_clCreateImage2D)(
     size_t                  image_height,
     size_t                  image_row_pitch,
     void *                  host_ptr,
-    cl_int *                errcode_ret) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
+    cl_int *                errcode_ret); // CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
 
 typedef CL_API_ENTRY cl_mem (CL_API_CALL *KHRpfn_clCreateImage3D)(
     cl_context              context,
@@ -665,22 +665,22 @@ typedef CL_API_ENTRY cl_mem (CL_API_CALL *KHRpfn_clCreateImage3D)(
     size_t                  image_row_pitch,
     size_t                  image_slice_pitch,
     void *                  host_ptr,
-    cl_int *                errcode_ret) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
+    cl_int *                errcode_ret); // CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
 
-typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clUnloadCompiler)(void) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
+typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clUnloadCompiler)(void); // CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
 
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueMarker)(
     cl_command_queue    command_queue,
-    cl_event *          event) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
+    cl_event *          event);// CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
 
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueWaitForEvents)(
     cl_command_queue command_queue,
     cl_uint          num_events,
-    const cl_event * event_list) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
+    const cl_event * event_list); // CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
 
-typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueBarrier)(cl_command_queue command_queue) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
+typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueBarrier)(cl_command_queue command_queue); // CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
 
-typedef CL_API_ENTRY void * (CL_API_CALL *KHRpfn_clGetExtensionFunctionAddress)(const char *function_name) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
+typedef CL_API_ENTRY void * (CL_API_CALL *KHRpfn_clGetExtensionFunctionAddress)(const char *function_name); // CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
 
 // GL and other APIs
 typedef CL_API_ENTRY cl_mem (CL_API_CALL *KHRpfn_clCreateFromGLBuffer)(
