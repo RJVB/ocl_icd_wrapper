@@ -58,19 +58,6 @@ clIcdGetPlatformIDsKHR(cl_uint num_entries,
   return CL_SUCCESS;
 }
 
-CL_API_ENTRY void* CL_API_CALL
-clGetExtensionFunctionAddress(const char *funcname)
-{
-  if (strcmp(funcname, "clIcdGetPlatformIDsKHR") == 0)
-  {
-    return (void*)clIcdGetPlatformIDsKHR;
-  }
-  else
-  {
-    return NULL;
-  }
-}
-
 CL_API_ENTRY cl_int CL_API_CALL
 _clGetPlatformIDs_(cl_uint            num_entries,
                     cl_platform_id    *platforms,
@@ -149,19 +136,21 @@ _clGetPlatformInfo_(cl_platform_id    platform,
   }
 }
 
-CL_API_ENTRY cl_int CL_API_CALL
-clGetPlatformInfo(cl_platform_id    platform,
-                  cl_platform_info  param_name,
-                  size_t            param_value_size,
-                  void *            param_value,
-                  size_t *          param_value_size_ret)
+CL_API_ENTRY void* CL_API_CALL
+clGetExtensionFunctionAddress(const char *funcname)
 {
-  return _clGetPlatformInfo_(
-    platform,
-    param_name,
-    param_value_size,
-    param_value,
-    param_value_size_ret);
+  if (strcmp(funcname, "clIcdGetPlatformIDsKHR") == 0)
+  {
+    return (void*)clIcdGetPlatformIDsKHR;
+  }
+  else if (strcmp(funcname, "clGetPlatformInfo") == 0)
+  {
+    return (void*)_clGetPlatformInfo_;
+  }
+  else
+  {
+    return NULL;
+  }
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
