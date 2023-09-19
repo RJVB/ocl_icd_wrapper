@@ -115,7 +115,6 @@ _clGetPlatformInfo_(cl_platform_id    platform,
       param_value,
       param_value_size_ret
     );
-#ifdef __APPLE__
     if (ret == CL_SUCCESS && param_name == CL_PLATFORM_EXTENSIONS)
     {
       static int len, ourLen = 0;
@@ -146,7 +145,6 @@ _clGetPlatformInfo_(cl_platform_id    platform,
         }
       }
     }
-#endif
     return ret;
   }
 }
