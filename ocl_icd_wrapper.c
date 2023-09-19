@@ -150,6 +150,21 @@ _clGetPlatformInfo_(cl_platform_id    platform,
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
+clGetPlatformInfo(cl_platform_id    platform,
+                  cl_platform_info  param_name,
+                  size_t            param_value_size,
+                  void *            param_value,
+                  size_t *          param_value_size_ret)
+{
+  return _clGetPlatformInfo_(
+    platform,
+    param_name,
+    param_value_size,
+    param_value,
+    param_value_size_ret);
+}
+
+CL_API_ENTRY cl_int CL_API_CALL
 _clGetDeviceIDs_(cl_platform_id   platform,
                  cl_device_type   device_type,
                  cl_uint          num_entries,
