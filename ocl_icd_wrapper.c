@@ -59,7 +59,7 @@ clIcdGetPlatformIDsKHR(cl_uint num_entries,
 }
 
 CL_API_ENTRY void* CL_API_CALL
-clGetExtensionFunctionAddress(const char *funcname) 
+clGetExtensionFunctionAddress(const char *funcname)
 {
   if (strcmp(funcname, "clIcdGetPlatformIDsKHR") == 0)
   {
@@ -74,7 +74,7 @@ clGetExtensionFunctionAddress(const char *funcname)
 CL_API_ENTRY cl_int CL_API_CALL
 _clGetPlatformIDs_(cl_uint            num_entries,
                     cl_platform_id    *platforms,
-                    cl_uint           *num_platforms) CL_API_SUFFIX__VERSION_1_0
+                    cl_uint           *num_platforms)
 {
   return clIcdGetPlatformIDsKHR(num_entries, platforms, num_platforms);
 }
@@ -84,7 +84,7 @@ _clGetPlatformInfo_(cl_platform_id    platform,
                     cl_platform_info  param_name,
                     size_t            param_value_size,
                     void *            param_value,
-                    size_t *          param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                    size_t *          param_value_size_ret)
 {
   if (param_name == CL_PLATFORM_ICD_SUFFIX_KHR)
   {
@@ -156,7 +156,7 @@ _clGetDeviceIDs_(cl_platform_id   platform,
                  cl_device_type   device_type,
                  cl_uint          num_entries,
                  cl_device_id *   devices,
-                 cl_uint *        num_devices) CL_API_SUFFIX__VERSION_1_0
+                 cl_uint *        num_devices)
 {
   // Allocate array for real devices
   cl_device_id *_devices = NULL;
@@ -203,7 +203,7 @@ _clGetDeviceInfo_(cl_device_id    device,
                   cl_device_info  param_name,
                   size_t          param_value_size,
                   void *          param_value,
-                  size_t *        param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                  size_t *        param_value_size_ret)
 {
   if (param_name == CL_DEVICE_PLATFORM)
   {
@@ -238,19 +238,19 @@ _clCreateSubDevices_(cl_device_id in_device,
                      const cl_device_partition_property *properties,
                      cl_uint num_entries,
                      cl_device_id *out_devices,
-                     cl_uint *num_devices) CL_API_SUFFIX__VERSION_1_2
+                     cl_uint *num_devices)
 {
   return CL_INVALID_OPERATION;
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clRetainDevice_(cl_device_id device) CL_API_SUFFIX__VERSION_1_2
+_clRetainDevice_(cl_device_id device)
 {
   return clRetainDevice(device->device);
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clReleaseDevice_(cl_device_id device) CL_API_SUFFIX__VERSION_1_2
+_clReleaseDevice_(cl_device_id device)
 {
   return clReleaseDevice(device->device);
 }
@@ -315,7 +315,7 @@ _clCreateContext_(const cl_context_properties * properties,
                   const cl_device_id *          devices,
                   void (CL_CALLBACK * pfn_notify)(const char *, const void *, size_t, void *),
                   void *                        user_data,
-                  cl_int *                      errcode_ret) CL_API_SUFFIX__VERSION_1_0
+                  cl_int *                      errcode_ret)
 {
   // Create real device array
   cl_device_id *_devices = createDeviceList(num_devices, devices);
@@ -378,7 +378,7 @@ _clCreateContextFromType_(const cl_context_properties * properties,
                           cl_device_type                device_type,
                           void (CL_CALLBACK *     pfn_notify)(const char *, const void *, size_t, void *),
                           void *                        user_data,
-                          cl_int *                      errcode_ret) CL_API_SUFFIX__VERSION_1_0
+                          cl_int *                      errcode_ret)
 {
   // Call original function
   cl_context_properties *_properties = createContextProperties(properties);
@@ -455,13 +455,13 @@ _clCreateContextFromType_(const cl_context_properties * properties,
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clRetainContext_(cl_context context) CL_API_SUFFIX__VERSION_1_0
+_clRetainContext_(cl_context context)
 {
   return clRetainContext(context->context);
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clReleaseContext_(cl_context context) CL_API_SUFFIX__VERSION_1_0
+_clReleaseContext_(cl_context context)
 {
   return clReleaseContext(context->context);
 }
@@ -471,7 +471,7 @@ _clGetContextInfo_(cl_context         context,
                    cl_context_info    param_name,
                    size_t             param_value_size,
                    void *             param_value,
-                   size_t *           param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                   size_t *           param_value_size_ret)
 {
   if (param_name == CL_CONTEXT_DEVICES)
   {
@@ -539,7 +539,7 @@ CL_API_ENTRY cl_command_queue CL_API_CALL
 _clCreateCommandQueue_(cl_context                     context,
                        cl_device_id                   device,
                        cl_command_queue_properties    properties,
-                       cl_int *                       errcode_ret) CL_API_SUFFIX__VERSION_1_0
+                       cl_int *                       errcode_ret)
 {
   // Call original function
   cl_int err;
@@ -572,19 +572,19 @@ CL_API_ENTRY cl_int CL_API_CALL
 _clSetCommandQueueProperty_(cl_command_queue               command_queue ,
                             cl_command_queue_properties    properties ,
                             cl_bool                        enable ,
-                            cl_command_queue_properties *  old_properties) CL_EXT_SUFFIX__VERSION_1_0_DEPRECATED
+                            cl_command_queue_properties *  old_properties)
 {
   return CL_INVALID_OPERATION;
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clRetainCommandQueue_(cl_command_queue command_queue) CL_API_SUFFIX__VERSION_1_0
+_clRetainCommandQueue_(cl_command_queue command_queue)
 {
   return clRetainCommandQueue(command_queue->queue);
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clReleaseCommandQueue_(cl_command_queue command_queue) CL_API_SUFFIX__VERSION_1_0
+_clReleaseCommandQueue_(cl_command_queue command_queue)
 {
   return clReleaseCommandQueue(command_queue->queue);
 }
@@ -594,7 +594,7 @@ _clGetCommandQueueInfo_(cl_command_queue       command_queue ,
                         cl_command_queue_info  param_name ,
                         size_t                 param_value_size ,
                         void *                 param_value ,
-                        size_t *               param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                        size_t *               param_value_size_ret)
 {
   if (param_name == CL_QUEUE_CONTEXT)
   {
@@ -645,7 +645,7 @@ _clCreateBuffer_(cl_context    context ,
                  cl_mem_flags  flags ,
                  size_t        size ,
                  void *        host_ptr ,
-                 cl_int *      errcode_ret) CL_API_SUFFIX__VERSION_1_0
+                 cl_int *      errcode_ret)
 {
   // Call original function
   cl_int err;
@@ -681,7 +681,7 @@ _clCreateSubBuffer_(cl_mem                    buffer ,
                     cl_mem_flags              flags ,
                     cl_buffer_create_type     buffer_create_type ,
                     const void *              buffer_create_info ,
-                    cl_int *                  errcode_ret) CL_API_SUFFIX__VERSION_1_1
+                    cl_int *                  errcode_ret)
 {
   // Call original function
   cl_int err;
@@ -718,7 +718,7 @@ _clCreateImage_(cl_context              context,
                 const cl_image_format * image_format,
                 const cl_image_desc *   image_desc,
                 void *                  host_ptr,
-                cl_int *                errcode_ret) CL_API_SUFFIX__VERSION_1_2
+                cl_int *                errcode_ret)
 {
   cl_image_desc _desc = *image_desc;
   if (_desc.image_type == CL_MEM_OBJECT_IMAGE1D_BUFFER && _desc.buffer)
@@ -768,7 +768,7 @@ _clCreateImage2D_(cl_context              context ,
                   size_t                  image_height ,
                   size_t                  image_row_pitch ,
                   void *                  host_ptr ,
-                  cl_int *                errcode_ret) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED
+                  cl_int *                errcode_ret)
 {
   cl_image_desc desc =
   {
@@ -803,7 +803,7 @@ _clCreateImage3D_(cl_context              context,
                   size_t                  image_row_pitch ,
                   size_t                  image_slice_pitch ,
                   void *                  host_ptr ,
-                  cl_int *                errcode_ret) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED
+                  cl_int *                errcode_ret)
 {
   cl_image_desc desc =
   {
@@ -829,13 +829,13 @@ _clCreateImage3D_(cl_context              context,
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clRetainMemObject_(cl_mem memobj) CL_API_SUFFIX__VERSION_1_0
+_clRetainMemObject_(cl_mem memobj)
 {
   return clRetainMemObject(memobj->mem);
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clReleaseMemObject_(cl_mem memobj) CL_API_SUFFIX__VERSION_1_0
+_clReleaseMemObject_(cl_mem memobj)
 {
   return clReleaseMemObject(memobj->mem);
 }
@@ -846,7 +846,7 @@ _clGetSupportedImageFormats_(cl_context           context,
                              cl_mem_object_type   image_type ,
                              cl_uint              num_entries ,
                              cl_image_format *    image_formats ,
-                             cl_uint *            num_image_formats) CL_API_SUFFIX__VERSION_1_0
+                             cl_uint *            num_image_formats)
 {
   return clGetSupportedImageFormats(
     context->context,
@@ -863,7 +863,7 @@ _clGetMemObjectInfo_(cl_mem            memobj ,
                      cl_mem_info       param_name ,
                      size_t            param_value_size ,
                      void *            param_value ,
-                     size_t *          param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                     size_t *          param_value_size_ret)
 {
   if (param_name == CL_MEM_CONTEXT)
   {
@@ -914,7 +914,7 @@ _clGetImageInfo_(cl_mem            image ,
                  cl_image_info     param_name ,
                  size_t            param_value_size ,
                  void *            param_value ,
-                 size_t *          param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                 size_t *          param_value_size_ret)
 {
   if (param_name == CL_IMAGE_BUFFER)
   {
@@ -947,7 +947,7 @@ _clGetImageInfo_(cl_mem            image ,
 CL_API_ENTRY cl_int CL_API_CALL
 _clSetMemObjectDestructorCallback_(cl_mem  memobj ,
                                    void (CL_CALLBACK * pfn_notify)(cl_mem  memobj , void* user_data),
-                                   void * user_data)             CL_API_SUFFIX__VERSION_1_1
+                                   void * user_data)
 {
   return clSetMemObjectDestructorCallback(
     memobj->mem,
@@ -961,7 +961,7 @@ _clCreateSampler_(cl_context           context ,
                   cl_bool              normalized_coords ,
                   cl_addressing_mode   addressing_mode ,
                   cl_filter_mode       filter_mode ,
-                  cl_int *             errcode_ret) CL_API_SUFFIX__VERSION_1_0
+                  cl_int *             errcode_ret)
 {
   // Call original function
   cl_int err;
@@ -991,13 +991,13 @@ _clCreateSampler_(cl_context           context ,
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clRetainSampler_(cl_sampler  sampler) CL_API_SUFFIX__VERSION_1_0
+_clRetainSampler_(cl_sampler  sampler)
 {
   return clRetainSampler(sampler->sampler);
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clReleaseSampler_(cl_sampler  sampler) CL_API_SUFFIX__VERSION_1_0
+_clReleaseSampler_(cl_sampler  sampler)
 {
   return clReleaseSampler(sampler->sampler);
 }
@@ -1007,7 +1007,7 @@ _clGetSamplerInfo_(cl_sampler          sampler ,
                    cl_sampler_info     param_name ,
                    size_t              param_value_size ,
                    void *              param_value ,
-                   size_t *            param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                   size_t *            param_value_size_ret)
 {
   if (param_name == CL_SAMPLER_CONTEXT)
   {
@@ -1042,7 +1042,7 @@ _clCreateProgramWithSource_(cl_context         context ,
                             cl_uint            count ,
                             const char **      strings ,
                             const size_t *     lengths ,
-                            cl_int *           errcode_ret) CL_API_SUFFIX__VERSION_1_0
+                            cl_int *           errcode_ret)
 {
   // Call original function
   cl_int err;
@@ -1078,7 +1078,7 @@ _clCreateProgramWithBinary_(cl_context                      context ,
                             const size_t *                  lengths ,
                             const unsigned char **          binaries ,
                             cl_int *                        binary_status ,
-                            cl_int *                        errcode_ret) CL_API_SUFFIX__VERSION_1_0
+                            cl_int *                        errcode_ret)
 {
   cl_device_id *_devices = createDeviceList(num_devices, device_list);
 
@@ -1120,7 +1120,7 @@ _clCreateProgramWithBuiltInKernels_(cl_context             context ,
                                     cl_uint                num_devices ,
                                     const cl_device_id *   device_list ,
                                     const char *           kernel_names ,
-                                    cl_int *               errcode_ret) CL_API_SUFFIX__VERSION_1_2
+                                    cl_int *               errcode_ret)
 {
   cl_device_id *_devices = createDeviceList(num_devices, device_list);
 
@@ -1156,13 +1156,13 @@ _clCreateProgramWithBuiltInKernels_(cl_context             context ,
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clRetainProgram_(cl_program  program) CL_API_SUFFIX__VERSION_1_0
+_clRetainProgram_(cl_program  program)
 {
   return clRetainProgram(program->program);
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clReleaseProgram_(cl_program  program) CL_API_SUFFIX__VERSION_1_0
+_clReleaseProgram_(cl_program  program)
 {
   return clReleaseProgram(program->program);
 }
@@ -1173,7 +1173,7 @@ _clBuildProgram_(cl_program            program ,
                  const cl_device_id *  device_list ,
                  const char *          options ,
                  void (CL_CALLBACK *   pfn_notify)(cl_program  program , void *  user_data),
-                 void *                user_data) CL_API_SUFFIX__VERSION_1_0
+                 void *                user_data)
 {
   cl_device_id *_devices = createDeviceList(num_devices, device_list);
 
@@ -1201,7 +1201,7 @@ _clBuildProgram_(cl_program            program ,
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clUnloadCompiler_(void) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED
+_clUnloadCompiler_(void)
 {
   return clUnloadCompiler();
 }
@@ -1229,7 +1229,7 @@ _clCompileProgram_(cl_program            program ,
                    const cl_program *    input_headers,
                    const char **         header_include_names ,
                    void (CL_CALLBACK *   pfn_notify)(cl_program  program , void *  user_data),
-                   void *                user_data) CL_API_SUFFIX__VERSION_1_2
+                   void *                user_data)
 {
   cl_device_id *_devices = createDeviceList(num_devices, device_list);
   cl_program *_headers = createProgramList(num_input_headers, input_headers);
@@ -1273,7 +1273,7 @@ _clLinkProgram_(cl_context            context ,
                 const cl_program *    input_programs ,
                 void (CL_CALLBACK *   pfn_notify)(cl_program  program , void *  user_data),
                 void *                user_data ,
-                cl_int *              errcode_ret) CL_API_SUFFIX__VERSION_1_2
+                cl_int *              errcode_ret)
 {
   cl_device_id *_devices = createDeviceList(num_devices, device_list);
   cl_program *_programs = createProgramList(num_input_programs, input_programs);
@@ -1318,7 +1318,7 @@ _clLinkProgram_(cl_context            context ,
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clUnloadPlatformCompiler_(cl_platform_id  platform) CL_API_SUFFIX__VERSION_1_2
+_clUnloadPlatformCompiler_(cl_platform_id  platform)
 {
   return clUnloadPlatformCompiler(platform->platform);
 }
@@ -1328,7 +1328,7 @@ _clGetProgramInfo_(cl_program          program ,
                    cl_program_info     param_name ,
                    size_t              param_value_size ,
                    void *              param_value ,
-                   size_t *            param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                   size_t *            param_value_size_ret)
 {
   if (param_name == CL_PROGRAM_CONTEXT)
   {
@@ -1381,7 +1381,7 @@ _clGetProgramBuildInfo_(cl_program             program ,
                         cl_program_build_info  param_name ,
                         size_t                 param_value_size ,
                         void *                 param_value ,
-                        size_t *               param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                        size_t *               param_value_size_ret)
 {
   return clGetProgramBuildInfo(
     program->program,
@@ -1396,7 +1396,7 @@ _clGetProgramBuildInfo_(cl_program             program ,
 CL_API_ENTRY cl_kernel CL_API_CALL
 _clCreateKernel_(cl_program       program ,
                  const char *     kernel_name ,
-                 cl_int *         errcode_ret) CL_API_SUFFIX__VERSION_1_0
+                 cl_int *         errcode_ret)
 {
   // Call original function
   cl_int err;
@@ -1427,7 +1427,7 @@ CL_API_ENTRY cl_int CL_API_CALL
 _clCreateKernelsInProgram_(cl_program      program ,
                            cl_uint         num_kernels ,
                            cl_kernel *     kernels ,
-                           cl_uint *       num_kernels_ret) CL_API_SUFFIX__VERSION_1_0
+                           cl_uint *       num_kernels_ret)
 {
   cl_kernel *_kernels = NULL;
   if (kernels)
@@ -1468,13 +1468,13 @@ _clCreateKernelsInProgram_(cl_program      program ,
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clRetainKernel_(cl_kernel     kernel) CL_API_SUFFIX__VERSION_1_0
+_clRetainKernel_(cl_kernel     kernel)
 {
   return clRetainKernel(kernel->kernel);
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clReleaseKernel_(cl_kernel    kernel) CL_API_SUFFIX__VERSION_1_0
+_clReleaseKernel_(cl_kernel    kernel)
 {
   return clReleaseKernel(kernel->kernel);
 }
@@ -1483,7 +1483,7 @@ CL_API_ENTRY cl_int CL_API_CALL
 _clSetKernelArg_(cl_kernel     kernel ,
                  cl_uint       arg_index ,
                  size_t        arg_size ,
-                 const void *  arg_value) CL_API_SUFFIX__VERSION_1_0
+                 const void *  arg_value)
 {
   // Get argument address qualifier to determine if it's a memory object
   cl_kernel_arg_address_qualifier address;
@@ -1560,7 +1560,7 @@ _clGetKernelInfo_(cl_kernel        kernel ,
                   cl_kernel_info   param_name ,
                   size_t           param_value_size ,
                   void *           param_value ,
-                  size_t *         param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                  size_t *         param_value_size_ret)
 {
   if (param_name == CL_KERNEL_CONTEXT)
   {
@@ -1612,7 +1612,7 @@ _clGetKernelArgInfo_(cl_kernel        kernel ,
                      cl_kernel_arg_info   param_name ,
                      size_t           param_value_size ,
                      void *           param_value ,
-                     size_t *         param_value_size_ret) CL_API_SUFFIX__VERSION_1_2
+                     size_t *         param_value_size_ret)
 {
   return clGetKernelArgInfo(
     kernel->kernel,
@@ -1630,7 +1630,7 @@ _clGetKernelWorkGroupInfo_(cl_kernel                   kernel ,
                            cl_kernel_work_group_info   param_name ,
                            size_t                      param_value_size ,
                            void *                      param_value ,
-                           size_t *                    param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                           size_t *                    param_value_size_ret)
 {
   return clGetKernelWorkGroupInfo(
     kernel->kernel,
@@ -1674,7 +1674,7 @@ cl_mem* createMemList(cl_uint num, const cl_mem *list)
 
 CL_API_ENTRY cl_int CL_API_CALL
 _clWaitForEvents_(cl_uint              num_events ,
-                  const cl_event *     event_list) CL_API_SUFFIX__VERSION_1_0
+                  const cl_event *     event_list)
 {
   if (num_events == 0)
   {
@@ -1693,7 +1693,7 @@ _clGetEventInfo_(cl_event          event ,
                  cl_event_info     param_name ,
                  size_t            param_value_size ,
                  void *            param_value ,
-                 size_t *          param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                 size_t *          param_value_size_ret)
 {
   if (param_name == CL_EVENT_CONTEXT)
   {
@@ -1741,7 +1741,7 @@ _clGetEventInfo_(cl_event          event ,
 
 CL_API_ENTRY cl_event CL_API_CALL
 _clCreateUserEvent_(cl_context     context ,
-                    cl_int *       errcode_ret) CL_API_SUFFIX__VERSION_1_1
+                    cl_int *       errcode_ret)
 {
   // Call original function
   cl_int err;
@@ -1769,20 +1769,20 @@ _clCreateUserEvent_(cl_context     context ,
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clRetainEvent_(cl_event  event) CL_API_SUFFIX__VERSION_1_0
+_clRetainEvent_(cl_event  event)
 {
   return clRetainEvent(event->event);
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clReleaseEvent_(cl_event  event) CL_API_SUFFIX__VERSION_1_0
+_clReleaseEvent_(cl_event  event)
 {
   return clReleaseEvent(event->event);
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
 _clSetUserEventStatus_(cl_event    event ,
-                       cl_int      execution_status) CL_API_SUFFIX__VERSION_1_1
+                       cl_int      execution_status)
 {
   return clSetUserEventStatus(event->event, execution_status);
 }
@@ -1791,7 +1791,7 @@ CL_API_ENTRY cl_int CL_API_CALL
 _clSetEventCallback_(cl_event     event ,
                      cl_int       command_exec_callback_type ,
                      void (CL_CALLBACK *  pfn_notify)(cl_event, cl_int, void *),
-                     void *       user_data) CL_API_SUFFIX__VERSION_1_1
+                     void *       user_data)
 {
   return clSetEventCallback(
     event->event,
@@ -1807,7 +1807,7 @@ _clGetEventProfilingInfo_(cl_event             event ,
                           cl_profiling_info    param_name ,
                           size_t               param_value_size ,
                           void *               param_value ,
-                          size_t *             param_value_size_ret) CL_API_SUFFIX__VERSION_1_0
+                          size_t *             param_value_size_ret)
 {
   return clGetEventProfilingInfo(
     event->event,
@@ -1819,13 +1819,13 @@ _clGetEventProfilingInfo_(cl_event             event ,
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clFlush_(cl_command_queue  command_queue) CL_API_SUFFIX__VERSION_1_0
+_clFlush_(cl_command_queue  command_queue)
 {
   return clFlush(command_queue->queue);
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clFinish_(cl_command_queue  command_queue) CL_API_SUFFIX__VERSION_1_0
+_clFinish_(cl_command_queue  command_queue)
 {
   return clFinish(command_queue->queue);
 }
@@ -1839,7 +1839,7 @@ _clEnqueueReadBuffer_(cl_command_queue     command_queue ,
                       void *               ptr ,
                       cl_uint              num_events_in_wait_list ,
                       const cl_event *     event_wait_list ,
-                      cl_event *           event) CL_API_SUFFIX__VERSION_1_0
+                      cl_event *           event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -1899,7 +1899,7 @@ _clEnqueueReadBufferRect_(cl_command_queue     command_queue ,
                           void *               ptr ,
                           cl_uint              num_events_in_wait_list ,
                           const cl_event *     event_wait_list ,
-                          cl_event *           event) CL_API_SUFFIX__VERSION_1_1
+                          cl_event *           event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -1959,7 +1959,7 @@ _clEnqueueWriteBuffer_(cl_command_queue    command_queue ,
                        const void *        ptr ,
                        cl_uint             num_events_in_wait_list ,
                        const cl_event *    event_wait_list ,
-                       cl_event *          event) CL_API_SUFFIX__VERSION_1_0
+                       cl_event *          event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2019,7 +2019,7 @@ _clEnqueueWriteBufferRect_(cl_command_queue     command_queue ,
                            const void *         ptr ,
                            cl_uint              num_events_in_wait_list ,
                            const cl_event *     event_wait_list ,
-                           cl_event *           event) CL_API_SUFFIX__VERSION_1_1
+                           cl_event *           event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2079,7 +2079,7 @@ _clEnqueueCopyBuffer_(cl_command_queue     command_queue ,
                       size_t               cb ,
                       cl_uint              num_events_in_wait_list ,
                       const cl_event *     event_wait_list ,
-                      cl_event *           event) CL_API_SUFFIX__VERSION_1_0
+                      cl_event *           event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2138,7 +2138,7 @@ _clEnqueueCopyBufferRect_(cl_command_queue     command_queue ,
                           size_t               dst_slice_pitch ,
                           cl_uint              num_events_in_wait_list ,
                           const cl_event *     event_wait_list ,
-                          cl_event *           event) CL_API_SUFFIX__VERSION_1_1
+                          cl_event *           event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2197,7 +2197,7 @@ _clEnqueueFillBuffer_(cl_command_queue    command_queue ,
                       size_t              cb ,
                       cl_uint             num_events_in_wait_list ,
                       const cl_event *    event_wait_list ,
-                      cl_event *          event) CL_API_SUFFIX__VERSION_1_2
+                      cl_event *          event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2251,7 +2251,7 @@ _clEnqueueFillImage_(cl_command_queue    command_queue ,
                      const size_t *      region ,
                      cl_uint             num_events_in_wait_list ,
                      const cl_event *    event_wait_list ,
-                     cl_event *          event) CL_API_SUFFIX__VERSION_1_2
+                     cl_event *          event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2307,7 +2307,7 @@ _clEnqueueReadImage_(cl_command_queue      command_queue ,
                      void *                ptr ,
                      cl_uint               num_events_in_wait_list ,
                      const cl_event *      event_wait_list ,
-                     cl_event *            event) CL_API_SUFFIX__VERSION_1_0
+                     cl_event *            event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2366,7 +2366,7 @@ _clEnqueueWriteImage_(cl_command_queue     command_queue ,
                       const void *         ptr ,
                       cl_uint              num_events_in_wait_list ,
                       const cl_event *     event_wait_list ,
-                      cl_event *           event) CL_API_SUFFIX__VERSION_1_0
+                      cl_event *           event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2423,7 +2423,7 @@ _clEnqueueCopyImage_(cl_command_queue      command_queue ,
                      const size_t *        region ,
                      cl_uint               num_events_in_wait_list ,
                      const cl_event *      event_wait_list ,
-                     cl_event *            event) CL_API_SUFFIX__VERSION_1_0
+                     cl_event *            event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2478,7 +2478,7 @@ _clEnqueueCopyImageToBuffer_(cl_command_queue  command_queue ,
                              size_t            dst_offset ,
                              cl_uint           num_events_in_wait_list ,
                              const cl_event *  event_wait_list ,
-                             cl_event *        event) CL_API_SUFFIX__VERSION_1_0
+                             cl_event *        event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2533,7 +2533,7 @@ _clEnqueueCopyBufferToImage_(cl_command_queue  command_queue ,
                              const size_t *    region ,
                              cl_uint           num_events_in_wait_list ,
                              const cl_event *  event_wait_list ,
-                             cl_event *        event) CL_API_SUFFIX__VERSION_1_0
+                             cl_event *        event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2589,7 +2589,7 @@ _clEnqueueMapBuffer_(cl_command_queue  command_queue ,
                      cl_uint           num_events_in_wait_list ,
                      const cl_event *  event_wait_list ,
                      cl_event *        event ,
-                     cl_int *          errcode_ret) CL_API_SUFFIX__VERSION_1_0 //CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED
+                     cl_int *          errcode_ret) //CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2652,7 +2652,7 @@ _clEnqueueMapImage_(cl_command_queue   command_queue ,
                     cl_uint            num_events_in_wait_list ,
                     const cl_event *   event_wait_list ,
                     cl_event *         event ,
-                    cl_int *           errcode_ret) CL_API_SUFFIX__VERSION_1_0
+                    cl_int *           errcode_ret)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2711,7 +2711,7 @@ _clEnqueueUnmapMemObject_(cl_command_queue  command_queue ,
                           void *            mapped_ptr ,
                           cl_uint           num_events_in_wait_list ,
                           const cl_event *   event_wait_list ,
-                          cl_event *         event) CL_API_SUFFIX__VERSION_1_0
+                          cl_event *         event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2761,7 +2761,7 @@ _clEnqueueMigrateMemObjects_(cl_command_queue        command_queue ,
                              cl_mem_migration_flags  flags ,
                              cl_uint                 num_events_in_wait_list ,
                              const cl_event *        event_wait_list ,
-                             cl_event *              event) CL_API_SUFFIX__VERSION_1_2
+                             cl_event *              event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2829,7 +2829,7 @@ _clEnqueueNDRangeKernel_(cl_command_queue  command_queue ,
                          const size_t *    local_work_size ,
                          cl_uint           num_events_in_wait_list ,
                          const cl_event *  event_wait_list ,
-                         cl_event *        event) CL_API_SUFFIX__VERSION_1_0
+                         cl_event *        event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2880,7 +2880,7 @@ _clEnqueueTask_(cl_command_queue   command_queue ,
                 cl_kernel          kernel ,
                 cl_uint            num_events_in_wait_list ,
                 const cl_event *   event_wait_list ,
-                cl_event *         event) CL_API_SUFFIX__VERSION_1_0
+                cl_event *         event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -2932,14 +2932,14 @@ _clEnqueueNativeKernel_(cl_command_queue   command_queue ,
                         const void **      args_mem_loc ,
                         cl_uint            num_events_in_wait_list ,
                         const cl_event *   event_wait_list ,
-                        cl_event *         event) CL_API_SUFFIX__VERSION_1_0
+                        cl_event *         event)
 {
   return CL_INVALID_OPERATION;
 }
 
 CL_API_ENTRY void * CL_API_CALL
 _clGetExtensionFunctionAddressForPlatform_(cl_platform_id  platform ,
-                                           const char *    func_name) CL_API_SUFFIX__VERSION_1_2
+                                           const char *    func_name)
 {
   return NULL;
 }
@@ -2948,7 +2948,7 @@ CL_API_ENTRY cl_int CL_API_CALL
 _clEnqueueMarkerWithWaitList_(cl_command_queue  command_queue ,
                               cl_uint            num_events_in_wait_list ,
                               const cl_event *   event_wait_list ,
-                              cl_event *         event) CL_API_SUFFIX__VERSION_1_2
+                              cl_event *         event)
 
 {
   // Initialize event arguments
@@ -2994,7 +2994,7 @@ extern CL_API_ENTRY cl_int CL_API_CALL
 _clEnqueueBarrierWithWaitList_(cl_command_queue  command_queue ,
                                cl_uint            num_events_in_wait_list ,
                                const cl_event *   event_wait_list ,
-                               cl_event *         event) CL_API_SUFFIX__VERSION_1_2
+                               cl_event *         event)
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -3041,14 +3041,14 @@ _clSetPrintfCallback_(cl_context           context ,
                                                        cl_uint printf_data_len ,
                                                        char *  printf_data_ptr ,
                                                        void *  user_data),
-                      void *               user_data) CL_API_SUFFIX__VERSION_1_2
+                      void *               user_data)
 {
   return CL_INVALID_OPERATION;
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
 _clEnqueueMarker_(cl_command_queue     command_queue ,
-                  cl_event *           event) CL_API_SUFFIX__VERSION_1_0
+                  cl_event *           event)
 {
   return _clEnqueueMarkerWithWaitList_(
     command_queue,
@@ -3061,7 +3061,7 @@ _clEnqueueMarker_(cl_command_queue     command_queue ,
 CL_API_ENTRY cl_int CL_API_CALL
 _clEnqueueWaitForEvents_(cl_command_queue  command_queue ,
                          cl_uint           num_events ,
-                         const cl_event *  event_list) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED
+                         const cl_event *  event_list)
 {
   cl_event *_events = createEventList(num_events, event_list);
   cl_int err = clEnqueueWaitForEvents(
@@ -3074,13 +3074,13 @@ _clEnqueueWaitForEvents_(cl_command_queue  command_queue ,
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
-_clEnqueueBarrier_(cl_command_queue  command_queue) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED
+_clEnqueueBarrier_(cl_command_queue  command_queue)
 {
   return clEnqueueBarrier(command_queue->queue);
 }
 
 CL_API_ENTRY void* CL_API_CALL
-_clGetExtensionFunctionAddress_(const char *funcname) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED
+_clGetExtensionFunctionAddress_(const char *funcname)
 {
   return NULL;
 }
@@ -3089,7 +3089,7 @@ CL_API_ENTRY cl_mem CL_API_CALL
 _clCreateFromGLBuffer_(cl_context      context ,
                        cl_mem_flags    flags ,
                        cl_GLuint       bufret_mem ,
-                       int *           errcode_ret ) CL_API_SUFFIX__VERSION_1_0
+                       int *           errcode_ret )
 {
   // Call original function
   cl_int err;
@@ -3125,7 +3125,7 @@ _clCreateFromGLTexture_(cl_context       context ,
                         cl_GLenum        target ,
                         cl_GLint         miplevel ,
                         cl_GLuint        texture ,
-                        cl_int *         errcode_ret ) CL_API_SUFFIX__VERSION_1_2
+                        cl_int *         errcode_ret )
 {
   // Call original function
   cl_int err;
@@ -3163,7 +3163,7 @@ _clCreateFromGLTexture2D_(cl_context       context,
                           cl_GLenum        target,
                           cl_GLint         miplevel,
                           cl_GLuint        texture,
-                          cl_int *         errcode_ret ) CL_API_SUFFIX__VERSION_1_0
+                          cl_int *         errcode_ret )
 {
   // Call original function
   cl_int err;
@@ -3201,7 +3201,7 @@ _clCreateFromGLTexture3D_(cl_context       context,
                           cl_GLenum        target,
                           cl_GLint         miplevel,
                           cl_GLuint        texture,
-                          cl_int *         errcode_ret ) CL_API_SUFFIX__VERSION_1_0
+                          cl_int *         errcode_ret )
 
 {
   // Call original function
@@ -3238,7 +3238,7 @@ CL_API_ENTRY cl_mem CL_API_CALL
 _clCreateFromGLRenderbuffer_(cl_context    context,
                              cl_mem_flags  flags,
                              cl_GLuint     renderbuffer,
-                             cl_int *      errcode_ret ) CL_API_SUFFIX__VERSION_1_0
+                             cl_int *      errcode_ret )
 {
   // Call original function
   cl_int err;
@@ -3271,7 +3271,7 @@ _clCreateFromGLRenderbuffer_(cl_context    context,
 CL_API_ENTRY cl_int CL_API_CALL
 _clGetGLObjectInfo_(cl_mem                 memobj,
                     cl_gl_object_type *    gl_object_type,
-                    cl_GLuint *            gl_object_name ) CL_API_SUFFIX__VERSION_1_0
+                    cl_GLuint *            gl_object_name )
 {
   return clGetGLObjectInfo(
     memobj->mem,
@@ -3285,7 +3285,7 @@ _clGetGLTextureInfo_(cl_mem                memobj,
                      cl_gl_texture_info    param_name,
                      size_t                param_value_size,
                      void *                param_value,
-                     size_t *              param_value_size_ret ) CL_API_SUFFIX__VERSION_1_0
+                     size_t *              param_value_size_ret )
 {
   return clGetGLTextureInfo(
     memobj->mem,
@@ -3302,7 +3302,7 @@ _clEnqueueAcquireGLObjects_(cl_command_queue       command_queue,
                             const cl_mem *         mem_objects,
                             cl_uint                num_events_in_wait_list,
                             const cl_event *       event_wait_list,
-                            cl_event *             event ) CL_API_SUFFIX__VERSION_1_0
+                            cl_event *             event )
 {
   // Initialize event arguments
   cl_event *_wait_list = createEventList(
@@ -3358,7 +3358,7 @@ _clEnqueueReleaseGLObjects_(cl_command_queue       command_queue,
                             const cl_mem *         mem_objects,
                             cl_uint                num_events_in_wait_list,
                             const cl_event *       event_wait_list,
-                            cl_event *             event ) CL_API_SUFFIX__VERSION_1_0
+                            cl_event *             event )
 
 {
   // Initialize event arguments
@@ -3415,7 +3415,7 @@ _clGetGLContextInfoKHR_(const cl_context_properties *  properties,
                         cl_gl_context_info             param_name,
                         size_t                         param_value_size,
                         void *                         param_value,
-                        size_t *                       param_value_size_ret ) CL_API_SUFFIX__VERSION_1_0
+                        size_t *                       param_value_size_ret )
 {
   cl_context_properties *_properties = createContextProperties(properties);
   cl_int err = clGetGLContextInfoKHR(
@@ -3436,7 +3436,7 @@ _clGetGLContextInfoKHR_(const cl_context_properties *  properties,
 CL_API_ENTRY cl_event CL_API_CALL
 _clCreateEventFromGLsyncKHR_(cl_context            context ,
                              cl_GLsync             cl_GLsync ,
-                             cl_int *              errcode_ret ) //CL_EXT_SUFFIX__VERSION_1_1
+                             cl_int *              errcode_ret )
 
 {
   // Call original function
