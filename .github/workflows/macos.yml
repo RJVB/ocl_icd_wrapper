@@ -1,0 +1,28 @@
+name: MacOS
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: macos-11
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: Oblomov/clinfo
+          ref: 3.0.23.01.25
+          path: clinfo
+      - run: brew install ocl-icd pocl automake
+      - run: gcc src/clinfo.c -g -pedantic -Werror -std=c99 -Wall -Wextra -o clinfo -L/usr/local/opt/ocl-icd/lib -lOpenCL -ldl
+        working-directory: clinfo
+      - run: clinfo/clinfo
+      - run: autoreconf -vif
+      - run: mkdir build
+      - run: ../configure
+        working-directory: build
+      - run: make LDFLAGS+="-framework OpenCL" CFLAGS+="-Wno-deprecated-declarations -DCL_USE_DEPRECATED_OPENCL_1_0_APIS -DCL_USE_DEPRECATED_OPENCL_1_1_APIS -DCL_USE_DEPRECATED_OPENCL_1_2_APIS -DCL_TARGET_OPENCL_VERSION=120"
+        working-directory: build
+      - run: echo `pwd`/.libs/libocl_icd_wrapper.dylib > /usr/local/etc/OpenCL/vendors/apple_wrapper.icd
+        working-directory: build
+      - run: clinfo/clinfo
+      - run: clinfo/clinfo | grep "Platform Name" | grep -q Apple
